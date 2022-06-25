@@ -16,6 +16,21 @@ router.get('/', (req, res) => {
 
 });
 
+router.get('/:id', (req, res) => {
+  console.log('in router.get movie id is', req.params.id)
+  const sqlQuery = `SELECT * FROM movies WHERE "id" = $1`
+  const sqlParams = [req.params.id]
+
+  pool.query(sqlQuery, sqlParams)
+    .then( result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('error in getting movie by id');
+      res.sendStatus(500)
+    })
+})
+
 router.post('/', (req, res) => {
   console.log(req.body);
   // RETURNING "id" will give us back the id of the created movie
