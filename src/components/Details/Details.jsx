@@ -8,7 +8,7 @@ function Details() {
     const movieDetail = useSelector(store => store.movieDetail);
     const movies= useSelector(store => store.movies)
     const history = useHistory();
-    let movieId = useParams()
+    let movieId = useParams().id
 
     useEffect(() => {
         console.log('in details useEffect', movieId)
@@ -20,24 +20,29 @@ function Details() {
 
     function nextPrevFeature(evt) {
         console.log('in nextPrevFeature', evt.target.value);
+        console.log('in nextPrevFeature', movieId)
         switch (evt.target.value) {
             case 'previous':
-                if (movieId.id === 0) {
-                    return history.push(`/details/${movies.length}`)
+                if (movieId === 0) {
+                    history.push(`/details/${movies.length}`)
+                    history.go(0)
                 }
                 else {
-                    Number(movieId.id)-1;
-                    console.log('in previous',movieId.id)
-                    return history.push(`/details/${movieId}`)
+                    movieId--;
+                    console.log('in previous',movieId)
+                    history.push(`/details/${movieId}`)
+                    history.go(0)
                 }
             case 'next':
                 if (movieId.id === movies.length) {
-                    return history.push(`/details/0`)
+                    history.push(`/details/0`)
+                    history.go(0)
                 }
                 else {
-                    Number(movieId.id)+1;
-                    console.log('in next',movieId.id)
-                    return history.push(`/details/${movieId}`);
+                    movieId++;
+                    console.log('in next',movieId)
+                    history.push(`/details/${movieId}`);
+                    history.go(0)
                 }
         }
     }

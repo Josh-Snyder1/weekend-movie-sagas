@@ -32,8 +32,8 @@ function* fetchAllMovies() {
 
 //get details for selected movie from the DB
 function* fetchDetails(req) {
-    console.log('in fetchDetails', req.payload.id)
-    const movieDetail = yield axios.get(`/api/movie/${req.payload.id}`);
+    console.log('in fetchDetails', req.payload)
+    const movieDetail = yield axios.get(`/api/movie/${req.payload}`);
     console.log('in fetchDetails', movieDetail);
     yield put({ type: 'SET_MOVIE_DETAIL', payload: movieDetail.data});
 }
