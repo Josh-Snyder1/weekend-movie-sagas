@@ -24,6 +24,7 @@ function MovieList() {
                             <img 
                                 src={movie.poster} 
                                 alt={movie.title}
+                                className="home-image"
                                 onClick={() => history.push(`/details/${movie.id}`)}
                             />
                         </div>

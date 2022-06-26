@@ -20,11 +20,19 @@ function Details() {
         movieDetail.length > 0 &&
         <>
             <div>
+                <div className='details-nav-bar'>
+                    <button>Previous</button>
+                    <button onClick={() => history.push(`/`)}>Home</button>
+                    <button>Next</button>
+                </div>
             <h3>{movieDetail[0].title}</h3>
                             <img 
                                 src={movieDetail[0].poster} 
                                 alt={movieDetail[0].title}
                             />
+                            <p>Genres: {movieDetail.map(movie => (
+                                movie.name
+                            )).join(', ')}</p>
                             <p>{movieDetail[0].description}</p>
             </div>
         </>
