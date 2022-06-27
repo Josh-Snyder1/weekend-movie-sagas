@@ -6,7 +6,7 @@ function Details() {
 
     const dispatch = useDispatch();
     const movieDetail = useSelector(store => store.movieDetail);
-    const movies= useSelector(store => store.movies)
+    const movies = useSelector(store => store.movies)
     const history = useHistory();
     let movieId = useParams().id
 
@@ -16,34 +16,41 @@ function Details() {
             type: 'FETCH_DETAILS',
             payload: movieId
         });
-    }, []);
+    }, [movieId]);
 
     function nextPrevFeature(evt) {
         console.log('in nextPrevFeature', evt.target.value);
         console.log('in nextPrevFeature', movieId)
         switch (evt.target.value) {
+            //checks value of button if previous button clicked
+            //this code runs
             case 'previous':
-                if (movieId === 0) {
-                    history.push(`/details/${movies.length}`)
-                    history.go(0)
-                }
+                //checks to see if at beginning of movies
+                if (movieId === 1) {
+                    console.log('in id = 1', movieId)
+                   return history.push(`/details/${movies.length}`)
+                    // history.go(0)
+                }//decrements movieId by one 
                 else {
-                    movieId--;
+                    parseInt(movieId)-1;
                     console.log('in previous',movieId)
-                    history.push(`/details/${movieId}`)
-                    history.go(0)
+                    return history.push(`/details/${movieId}`)
+                    // history.go(0)
                 }
+                break;
             case 'next':
-                if (movieId.id === movies.length) {
+                if (movieId === movies.length) {
+                    console.log('in next movieId length')
                     history.push(`/details/0`)
-                    history.go(0)
+                    // history.go(0)
                 }
                 else {
                     movieId++;
-                    console.log('in next',movieId)
+                    console.log('in next length',movies.length)
                     history.push(`/details/${movieId}`);
-                    history.go(0)
+                    // history.go(0)
                 }
+                break;
         }
     }
 
