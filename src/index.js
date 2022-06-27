@@ -35,7 +35,12 @@ function* fetchDetails(req) {
     console.log('in fetchDetails', req.payload)
     const movieDetail = yield axios.get(`/api/movie/${req.payload}`);
     console.log('in fetchDetails', movieDetail);
+    //set detail state for movie at selected end point
     yield put({ type: 'SET_MOVIE_DETAIL', payload: movieDetail.data});
+    //set the movies variable in the store
+    //this prevents bug of not being able to check length of movies array if page refreshed
+    //on detail view because fetch movies only runs on home page load.
+    yield put({ type: 'FETCH_MOVIES'});
 }
 
 

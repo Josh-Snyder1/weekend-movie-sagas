@@ -26,3 +26,8 @@
 .home-image {
   cursor: help;
 }
+
+button {
+  width: 80px;
+  margin: 10px;
+}

@@ -29,26 +29,23 @@ function Details() {
                 if (movieId === '1') {
                     console.log('in id = 1', movieId)
                    return history.push(`/details/${movies.length}`)
-                    // history.go(0)
                 }//decrements movieId by one 
                 else {
                     movieId--;
                     console.log('in previous',movieId)
                     return history.push(`/details/${movieId}`)
-                    // history.go(0)
                 }
                 break;
             case 'next':
                 if (movieId === JSON.stringify(movies.length)) {
                     console.log('in next movieId length max')
                     history.push(`/details/1`)
-                    // history.go(0)
                 }
                 else {
                     movieId++;
                     console.log('in next length',movies.length)
                     history.push(`/details/${movieId}`);
-                    // history.go(0)
+
                 }
                 break;
         }
