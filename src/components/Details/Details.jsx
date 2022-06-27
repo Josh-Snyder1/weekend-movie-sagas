@@ -26,22 +26,22 @@ function Details() {
             //this code runs
             case 'previous':
                 //checks to see if at beginning of movies
-                if (movieId === 1) {
+                if (movieId === '1') {
                     console.log('in id = 1', movieId)
                    return history.push(`/details/${movies.length}`)
                     // history.go(0)
                 }//decrements movieId by one 
                 else {
-                    parseInt(movieId)-1;
+                    movieId--;
                     console.log('in previous',movieId)
                     return history.push(`/details/${movieId}`)
                     // history.go(0)
                 }
                 break;
             case 'next':
-                if (movieId === movies.length) {
-                    console.log('in next movieId length')
-                    history.push(`/details/0`)
+                if (movieId === JSON.stringify(movies.length)) {
+                    console.log('in next movieId length max')
+                    history.push(`/details/1`)
                     // history.go(0)
                 }
                 else {
