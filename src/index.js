@@ -15,6 +15,7 @@ import axios from 'axios';
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('FETCH_DETAILS', fetchDetails);
+    yield takeEvery('FETCH_GENRES', fetchGenres)
 }
 
 function* fetchAllMovies() {
@@ -42,6 +43,14 @@ function* fetchDetails(req) {
     //on detail view because fetch movies only runs on home page load.
     yield put({ type: 'FETCH_MOVIES'});
 }
+
+function* fetchGenres() {
+try {
+    const genres = yield axios.get(`/api/genre`);
+    yield put({ type: 'SET_GENRES', payload: genres.data});
+} catch {
+    console.log('error in getting genres')
+}}
 
 
 //used to store details of selected movie

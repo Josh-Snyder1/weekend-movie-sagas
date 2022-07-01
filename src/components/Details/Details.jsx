@@ -39,13 +39,12 @@ function Details() {
             case 'next':
                 if (movieId === JSON.stringify(movies.length)) {
                     console.log('in next movieId length max')
-                    history.push(`/details/1`)
+                    return history.push(`/details/1`)
                 }
                 else {
                     movieId++;
                     console.log('in next length',movies.length)
-                    history.push(`/details/${movieId}`);
-
+                    return history.push(`/details/${movieId}`);
                 }
                 break;
         }
